@@ -32,7 +32,6 @@ public class League {
 		String line;
 		String state, name;
 
-		int i = 0;
 		while (in.hasNextLine()) {
 			int split = 1;
 			line = in.nextLine();
@@ -44,7 +43,8 @@ public class League {
 
 				if (temp[0].contains("New") || temp[0].contains("Golden")
 						|| temp[0].contains("San")
-						|| temp[0].contains("Oklahoma")) {
+						|| temp[0].contains("Oklahoma")
+						|| temp[0].contains("Los")) {
 					state = temp[0] + " " + temp[1];
 					split = 2;
 				} else {
@@ -62,7 +62,7 @@ public class League {
 			}
 			team.put(state, name);
 			split = 1;
-			i++;
+
 		}
 
 	}
