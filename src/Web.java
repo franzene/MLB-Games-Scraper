@@ -18,8 +18,7 @@ public class Web {
 
 	}
 
-	public static void readSite() throws Exception {
-		URL link = new URL("http://www.oddsshark.com/nba/scores");
+	public  void readSite(String sDate,String eDate) throws Exception {
 		String tempteam;
 		boolean addAwayScore = true;
 		boolean addHomeScore = false;
@@ -32,6 +31,11 @@ public class Web {
 		String date = "";
 		boolean full = false;
 		// System.out.println(i);
+		String startDate = sDate;
+		Calendar testCal = new Calendar();
+		while(!(startDate = testCal.nextDay(startDate)).equals( eDate))
+		{
+		URL link = new URL("http://www.oddsshark.com/nba/scores?date="+startDate);
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				link.openStream()));
 		while ((inputLine = in.readLine()) != null) {
@@ -79,7 +83,7 @@ public class Web {
 			}
 
 		}
-
+		}
 	}
 
 }

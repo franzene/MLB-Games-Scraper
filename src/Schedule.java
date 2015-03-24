@@ -4,9 +4,15 @@ import java.util.List;
 public class Schedule {
 	static ArrayList<Game> schedule = new ArrayList<Game>();
 
-	Schedule() throws Exception {
+	Schedule(String sDate, String eDate) throws Exception {
 		Web oddsShark = new Web();
-		oddsShark.readSite();
+		oddsShark.readSite(sDate,eDate);
+	}
+
+	Schedule(String getDate) throws Exception {
+		Web oddsShark = new Web();
+		//oddsShark.readSite(sDate,eDate);
+
 	}
 
 	public static void addGame(Game game) {
