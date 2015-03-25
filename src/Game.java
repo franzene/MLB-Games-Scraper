@@ -60,6 +60,7 @@ public class Game {
 	public void print() {
 
 		System.out.print(away + " VS ");
-		System.out.println(home);
+		System.out.print(home);
+		System.out.println(" " + date);
 	}
 }
