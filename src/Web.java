@@ -20,23 +20,24 @@ public class Web {
 
 	public void readSite(String sDate, String eDate) throws Exception {
 		String tempteam;
+		String awayTeam = "";
+		String homeTeam = "";
+		String date = "";
+		String startDate = sDate;
+
 		boolean addAwayScore = true;
 		boolean addHomeScore = false;
 		boolean addTeams = false;
-		String awayTeam = "";
-		String homeTeam = "";
+		boolean full = false;
+
 		int homeScore = -1;
 		int awayScore = -1;
-		String time = "";
-		String date = "";
-		boolean full = false;
-		// System.out.println(i);
-		String startDate = sDate;
+
 		Calendar testCal = new Calendar();
-		// !(startDate = testCal.nextDay(startDate)).equals( eDate) && !
+
 		startDate = testCal.nextDay(startDate);
 		while (!testCal.laterDate(startDate, eDate)) {
-			//System.out.println(startDate);
+			// System.out.println(startDate);
 			URL link = new URL("http://www.oddsshark.com/nba/scores?date="
 					+ startDate);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -46,6 +47,7 @@ public class Web {
 					inputLine = inputLine.replace(" ", "-");
 					date = inputLine.substring(inputLine.indexOf("/>") + 2,
 							inputLine.indexOf("</") - 14);
+					date = testCal.convertDate(date);
 				}
 				if (inputLine.contains("scores-data last")) {
 					inputLine = inputLine.substring(

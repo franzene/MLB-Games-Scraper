@@ -2,6 +2,10 @@ public class Calendar {
 	int month;
 	int day;
 	int year;
+
+	int pagemonth;
+	int pageday;
+	int pageyear;
 	boolean firstDate;
 
 	Calendar() {
@@ -10,6 +14,41 @@ public class Calendar {
 		year = 2015;
 		firstDate = true;
 
+	}
+
+	void setpage() {
+		pagemonth = month;
+		pageday = day;
+		pageyear = year;
+	}
+
+	int convertMonth(String m) {
+		if (m.equals("Jan")) {
+			return 1;
+		} else if (m.equals("Feb")) {
+			return 2;
+		} else if (m.equals("Mar")) {
+			return 3;
+		} else if (m.equals("Apr")) {
+			return 4;
+		} else if (m.equals("May")) {
+			return 5;
+		} else if (m.equals("Jun")) {
+			return 6;
+		} else if (m.equals("Jul")) {
+			return 7;
+		} else if (m.equals("Aug")) {
+			return 8;
+		} else if (m.equals("Sep")) {
+			return 9;
+		} else if (m.equals("Oct")) {
+			return 10;
+		} else if (m.equals("Nov")) {
+			return 11;
+		} else if (m.equals("Dec")) {
+			return 12;
+		}
+		return 0;
 	}
 
 	boolean nextMonth() {
@@ -69,16 +108,11 @@ public class Calendar {
 		int lday = Integer.parseInt(lDay);
 		int lyear = Integer.parseInt(lYear);
 
-		// System.out.println(cyear + "/"+ cmonth +"/"+ cday);
-		// System.out.println(lyear + "/" +lmonth + "/"+lday);
 		if (cyear > lyear) {
-			// System.out.println("1");
 			return true;
 		}
 		if (cyear == lyear && cmonth > lmonth) {
-			// System.out.println("2");
-			// System.out.println(cyear == lyear);
-			// System.out.println(cmonth > lmonth);
+
 			return true;
 		}
 		if (cyear == lyear && cmonth == lmonth && cday > lday) {
@@ -88,19 +122,32 @@ public class Calendar {
 
 		return false;
 	}
-	String convertDate(String d)
-	{
 
+	String convertDate(String d) {
 		String date = d;
-		String Month = date.substring(0, 2);
-		String Day = date.substring(3, 5);
-		String Year = date.substring(6, 10);
-		month = Integer.parseInt(Month);
+		String Month = date.substring(0, 3);
+		String Day = date.substring(4, date.length());
+		month = convertMonth(Month);
 		day = Integer.parseInt(Day);
-		year = Integer.parseInt(Year);
-		return d;
-		
+
+		if (pagemonth == 1 && month == 12) {
+			if (day == 31 || day == 30) {
+				year = pageyear - 1;
+			}
+		} else if (pagemonth == 12 && month == 1) {
+			if (day == 1 || day == 2) {
+				year = pageyear + 1;
+			}
+		} else {
+			year = pageyear;
+		}
+
+		return ((String.format("%02d", month) + "/"
+				+ String.format("%02d", day) + "/" + String
+					.format("%02d", year)));
+
 	}
+
 	String nextDay(String d) {
 
 		String date = d;
@@ -126,8 +173,8 @@ public class Calendar {
 			} else {
 				day++;
 			}
-			// System.out.println("	"+month + "/"+day +"/"+ year);
 		}
+		setpage();
 		return ((String.format("%02d", month) + "/"
 				+ String.format("%02d", day) + "/" + String
 					.format("%02d", year)));
