@@ -29,13 +29,16 @@ public class Web {
 		boolean addHomeScore = false;
 		boolean addTeams = false;
 		boolean full = false;
+		boolean lastDay = false;
 
 		int homeScore = -1;
 		int awayScore = -1;
-
+		int count = 0;
 		Calendar testCal = new Calendar();
 
 		startDate = testCal.nextDay(startDate);
+		
+		calendarLoop:
 		while (!testCal.laterDate(startDate, eDate)) {
 			// System.out.println(startDate);
 			URL link = new URL("http://www.oddsshark.com/nba/scores?date="
@@ -49,6 +52,20 @@ public class Web {
 							inputLine.indexOf("</") - 14);
 					date = testCal.convertDate(date);
 				}
+
+				count++;
+				if(lastDay == true)
+				{
+					if(!eDate.equals(date))
+					{
+						break calendarLoop;
+					}
+				}
+				if(eDate.equals(date))
+				{
+					lastDay = true;
+				}
+			
 				if (inputLine.contains("scores-data last")) {
 					inputLine = inputLine.substring(
 							inputLine.indexOf("\">") + 2,

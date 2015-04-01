@@ -2,9 +2,10 @@ public class test {
 
 	public static void main(String[] args) throws Exception {
 
-		Schedule OddsShark = new Schedule("12/22/2014","01/09/2015");
+		Schedule OddsShark = new Schedule("01/05/2015","01/09/2015");
 		OddsShark.print();
-		storeSchedule.writeSchedule();
+		
+		//storeSchedule.writeSchedule();
 //		Calendar testCal = new Calendar();
 //		String startDate = "01/20/2015";
 //		String  eDate = "02/09/2015";

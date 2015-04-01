@@ -119,13 +119,14 @@ public class BinaryHeap<Game extends Comparable<Game>>
    	 }
    }
    
-  public ArrayList getOutput()
+  public Game get(int i)
    { 
-    ArrayList<Game> x = new ArrayList();
-    for(int i = 0; i < tree.getElementSize(); i++)
-     {
-      x.add(tree.get(i));
-     }
-    return x;
+
+      return tree.get(i);
    }
+  
+  public int size()
+  {
+	  return tree.getElementSize();
+  }
  }
