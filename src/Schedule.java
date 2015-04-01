@@ -3,7 +3,7 @@ import java.util.List;
 
 public class Schedule 
  {
-  static BinaryHeap<Game> schedule;
+  static BinaryHeap<Game> schedule = new BinaryHeap<Game>();
 
   Schedule(String sDate, String eDate) throws Exception 
    {
