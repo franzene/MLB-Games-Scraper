@@ -6,7 +6,6 @@ public class Game implements Comparable<Game>
 	private String home;
 	private int awayScore;
 	private int homeScore;
-	String time;
 	String date;
 
 	public Game(String a, String h, int as, int hs, String d) 
