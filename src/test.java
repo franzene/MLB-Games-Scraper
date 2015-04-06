@@ -6,6 +6,14 @@ public class test {
 	
 				
 			Schedule OddsShark = new Schedule("01/01/2015","01/05/2015");
+			System.out.println("---------Home--------");
+			OddsShark.orderHomeTeam();
+			OddsShark.print();
+			System.out.println("---------Home--------");
+			OddsShark.orderAwayTeam();
+			OddsShark.print();
+			System.out.println("---------Date--------");
+			OddsShark.orderDate();
 			OddsShark.print();
 
 //		EventQueue.invokeLater(new Runnable() {

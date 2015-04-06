@@ -60,9 +60,9 @@ public class Game implements Comparable<Game> {
 	}
 
 	public void print() {
-		System.out.print(away + " vs ");
+		System.out.print(date+" " +away + " vs ");
 		System.out.print(home);
-		System.out.println(" " + date);
+		System.out.println(" " + awayScore + " "+ homeScore );
 	}
 
 	public int compareTo(Game o) {
