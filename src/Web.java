@@ -37,10 +37,9 @@ public class Web {
 		Calendar testCal = new Calendar();
 
 		startDate = testCal.nextDay(startDate);
-		
-		calendarLoop:
-		while (!testCal.laterDate(startDate, eDate)) {
-			// System.out.println(startDate);
+
+		calendarLoop: while (true) {
+
 			URL link = new URL("http://www.oddsshark.com/nba/scores?date="
 					+ startDate);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -51,21 +50,12 @@ public class Web {
 					date = inputLine.substring(inputLine.indexOf("/>") + 2,
 							inputLine.indexOf("</") - 14);
 					date = testCal.convertDate(date);
-				}
 
-				count++;
-				if(lastDay == true)
-				{
-					if(!eDate.equals(date))
-					{
+					if (testCal.laterDate(date, eDate)) {
 						break calendarLoop;
 					}
 				}
-				if(eDate.equals(date))
-				{
-					lastDay = true;
-				}
-			
+
 				if (inputLine.contains("scores-data last")) {
 					inputLine = inputLine.substring(
 							inputLine.indexOf("\">") + 2,
@@ -108,9 +98,10 @@ public class Web {
 					full = false;
 				}
 			}
-			startDate = testCal.nextDay(startDate);
+			startDate = testCal.nextThreeDays(startDate);
 
 		}
+
 	}
 
 }

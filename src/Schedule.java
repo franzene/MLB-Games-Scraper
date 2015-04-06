@@ -25,6 +25,14 @@ public class Schedule {
 	public void saveSchedule() {
 
 	}
+	
+	public void getAllTeam(String t)
+	{
+		for (int i = 0; i < schedule.size()  ; i++) {
+			if(schedule.get(i).getHome().equals(t) || schedule.get(i).getAway().equals(t)  )
+				schedule.get(i).print();
+			}
+	}
 
 	public void print() {
 

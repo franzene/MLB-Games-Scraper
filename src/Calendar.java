@@ -159,11 +159,35 @@ public class Calendar {
 		day = Integer.parseInt(Day);
 		year = Integer.parseInt(Year);
 
-		for (int i = 0; i < 3; i++) {
-			if (firstDate) {
-				i = 2;
-				firstDate = false;
+
+			if (nextMonth()) {
+				month++;
+				day = 1;
+				if (month == 13) {
+					month = 1;
+					year++;
+				}
+			} else {
+				day++;
 			}
+		setpage();
+		return ((String.format("%02d", month) + "/"
+				+ String.format("%02d", day) + "/" + String
+					.format("%02d", year)));
+
+	}
+	String nextThreeDays(String d) {
+
+		String date = d;
+		String Month = date.substring(0, 2);
+		String Day = date.substring(3, 5);
+		String Year = date.substring(6, 10);
+		month = Integer.parseInt(Month);
+		day = Integer.parseInt(Day);
+		year = Integer.parseInt(Year);
+
+		for (int i = 0; i < 3; i++) {
+			
 			if (nextMonth()) {
 				month++;
 				day = 1;
