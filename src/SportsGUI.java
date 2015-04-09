@@ -16,6 +16,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.factories.FormFactory;
 import com.jgoodies.forms.layout.RowSpec;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 
 
 public class SportsGUI {
@@ -48,17 +50,13 @@ public class SportsGUI {
 		
 		JPanel panel = new JPanel();
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new FormLayout(new ColumnSpec[] {
-				ColumnSpec.decode("82px"),
-				ColumnSpec.decode("175px"),
-				FormFactory.LABEL_COMPONENT_GAP_COLSPEC,
-				ColumnSpec.decode("89px"),},
-			new RowSpec[] {
-				FormFactory.LINE_GAP_ROWSPEC,
-				RowSpec.decode("24px"),}));
+		panel.setLayout(new GridLayout(0, 3, 0, 0));
+		
+		JLabel label = new JLabel("");
+		panel.add(label);
 		
 		JSplitPane splitPane = new JSplitPane();
-		panel.add(splitPane, "2, 2, left, top");
+		panel.add(splitPane);
 		
 		final JTextArea textArea_1 = new JTextArea();
 		textArea_1.setText("02/01/2015");
@@ -85,7 +83,7 @@ public class SportsGUI {
 				
 			}
 		});
-		panel.add(btnNewButton, "4, 2, left, top");
+		panel.add(btnNewButton);
 	}
 
 }

@@ -140,5 +140,69 @@ public class Schedule {
 			
 		}
 	}
+	public void orderAwayScore()
+	{
+		sort:
+		while(true)
+		{		
+			boolean sorted = false;
+			int i = 0;
+			while(i + 1 < schedule.size()){
+				
+				if(schedule.get(i).getAwayScore() > schedule.get(i+1).getAwayScore() )
+				{
+					Game temp_1 = schedule.get(i);
+					Game temp_2 = schedule.get(i + 1);
+					
+					schedule.set(i + 1, temp_1);
+					schedule.set(i  , temp_2);
+					sorted = true;
+				}
+				i++;
+			}
+			if(sorted == false)
+			{
+				break sort;
+			}
+			else
+			{
+				i = 0;
+				sorted = false;
+			}
+			
+		}
+	}
+	public void orderHomeScore()
+	{
+		sort:
+		while(true)
+		{		
+			boolean sorted = false;
+			int i = 0;
+			while(i + 1 < schedule.size()){
+				
+				if(schedule.get(i).getHomeScore() > schedule.get(i+1).getHomeScore() )
+				{
+					Game temp_1 = schedule.get(i);
+					Game temp_2 = schedule.get(i + 1);
+					
+					schedule.set(i + 1, temp_1);
+					schedule.set(i  , temp_2);
+					sorted = true;
+				}
+				i++;
+			}
+			if(sorted == false)
+			{
+				break sort;
+			}
+			else
+			{
+				i = 0;
+				sorted = false;
+			}
+			
+		}
+	}
 
 }

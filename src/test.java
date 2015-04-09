@@ -9,11 +9,17 @@ public class test {
 			System.out.println("---------Home--------");
 			OddsShark.orderHomeTeam();
 			OddsShark.print();
-			System.out.println("---------Home--------");
+			System.out.println("---------Away--------");
 			OddsShark.orderAwayTeam();
 			OddsShark.print();
 			System.out.println("---------Date--------");
 			OddsShark.orderDate();
+			OddsShark.print();
+			System.out.println("---------AwayScore--------");
+			OddsShark.orderAwayScore();
+			OddsShark.print();
+			System.out.println("---------HomeScore--------");
+			OddsShark.orderAwayScore();
 			OddsShark.print();
 
 //		EventQueue.invokeLater(new Runnable() {
