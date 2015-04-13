@@ -47,12 +47,10 @@ public class Schedule {
 
 				if (team0.equals("All")) {
 					tempschedule.add(schedule.get(i));
-				} else if (teamA.equals(schedule.get(i).getHome())
-						|| teamA.equals(schedule.get(i).getAway())) {
+				} else if (teamA.equals(schedule.get(i).getHome())|| teamA.equals(schedule.get(i).getAway())) {
 					if (team1.equals("All")) {
 						tempschedule.add(schedule.get(i));
-					} else if (teamB.equals(schedule.get(i).getHome())
-							|| teamB.equals(schedule.get(i).getAway())) {
+					} else if (teamB.equals(schedule.get(i).getHome())|| teamB.equals(schedule.get(i).getAway())) {
 						tempschedule.add(schedule.get(i));
 					}
 
@@ -101,8 +99,7 @@ public class Schedule {
 
 	public void getAllTeam(String t) {
 		for (int i = 0; i < schedule.size(); i++) {
-			if (schedule.get(i).getHome().equals(t)
-					|| schedule.get(i).getAway().equals(t))
+			if (schedule.get(i).getHome().equals(t)|| schedule.get(i).getAway().equals(t))
 				schedule.get(i).print();
 		}
 	}
@@ -237,8 +234,7 @@ public class Schedule {
 			int i = 0;
 			while (i + 1 < tempschedule.size()) {
 
-				if (tempschedule.get(i).getHomeScore() > tempschedule.get(i + 1)
-						.getHomeScore()) {
+				if (tempschedule.get(i).getHomeScore() > tempschedule.get(i + 1).getHomeScore()) {
 					Game temp_1 = tempschedule.get(i);
 					Game temp_2 = tempschedule.get(i + 1);
 

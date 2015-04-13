@@ -48,7 +48,7 @@ public class Web {
 				if (inputLine.contains("Final")) {
 					inputLine = inputLine.replace(" ", "-");
 					date = inputLine.substring(inputLine.indexOf("/>") + 2,
-							inputLine.indexOf("</") - 14);
+					inputLine.indexOf("</") - 14);
 					date = testCal.convertDate(date);
 
 					if (testCal.laterDate(date, eDate)) {
@@ -57,9 +57,7 @@ public class Web {
 				}
 
 				if (inputLine.contains("scores-data last")) {
-					inputLine = inputLine.substring(
-							inputLine.indexOf("\">") + 2,
-							inputLine.indexOf("</"));
+					inputLine = inputLine.substring(inputLine.indexOf("\">") + 2, inputLine.indexOf("</"));
 					int tempscore = Integer.parseInt(inputLine);
 					if (addAwayScore == true) {
 						awayScore = tempscore;
@@ -74,10 +72,8 @@ public class Web {
 
 				}
 				if (addTeams == true) {
-					String tempHome = inputLine.substring(
-							inputLine.indexOf("at"), inputLine.length());
-					String tempAway = inputLine.substring(0,
-							inputLine.indexOf("at"));
+					String tempHome = inputLine.substring(inputLine.indexOf("at"), inputLine.length());
+					String tempAway = inputLine.substring(0, inputLine.indexOf("at"));
 					if ((tempteam = League.teamsContains(tempAway)) != null) {
 						awayTeam = tempteam;
 					}
@@ -93,8 +89,7 @@ public class Web {
 
 				}
 				if (full) {
-					Schedule.addGame(new Game(awayTeam, homeTeam, awayScore,
-							homeScore, date));
+					Schedule.addGame(new Game(awayTeam, homeTeam, awayScore, homeScore, date));
 					full = false;
 				}
 			}
