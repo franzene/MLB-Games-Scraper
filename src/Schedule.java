@@ -6,11 +6,13 @@ public class Schedule {
 	static ArrayList<Game> tempschedule = new ArrayList<Game>();
 
 	Schedule(String sDate, String eDate) throws Exception {
+		schedule = new ArrayList<Game>();
 		Web oddsShark = new Web();
 		oddsShark.readSite(sDate, eDate);
 	}
 
 	Schedule(String getDate) throws Exception {
+		schedule = new ArrayList<Game>();
 		Web oddsShark = new Web();
 		// oddsShark.readSite(sDate,eDate);
 	}
@@ -82,6 +84,54 @@ public class Schedule {
 		}
 
 	}
+	public void setTemp(String team0, String team1,
+			String sort) {
+		boolean get = false;
+		boolean last = false;
+		String teamA = "";
+		String teamB = "";
+		tempschedule = new ArrayList<Game>();
+		for(int i = 0; i < schedule.size();i++)
+		{
+			teamA = League.teamsContains(team0);
+			teamB = League.teamsContains(team1);
+
+			if (team0.equals("All")) {
+				tempschedule.add(schedule.get(i));
+			} else if (teamA.equals(schedule.get(i).getHome())|| teamA.equals(schedule.get(i).getAway())) {
+				if (team1.equals("All")) {
+					tempschedule.add(schedule.get(i));
+				} else if (teamB.equals(schedule.get(i).getHome())|| teamB.equals(schedule.get(i).getAway())) {
+					tempschedule.add(schedule.get(i));
+				}
+
+			}
+		}
+		
+		if(sort.equals("Home Team"))
+		{
+			orderHomeTeam();
+		}
+		else if(sort.equals("Away Team"))
+		{
+			orderAwayTeam();
+
+		}
+		else if(sort.equals("Away Score"))
+		{
+			orderAwayScore();
+
+		}
+		else if(sort.equals("Home Score"))
+		{
+			orderHomeScore();
+
+		}
+		else{
+		}
+
+	}
+
 
 	public Object[][] getSchedule() {
 		Object[][] sched = new Object[tempschedule.size()][5];
@@ -200,7 +250,14 @@ public class Schedule {
 
 		}
 	}
-
+	public int getMasterSize()
+	{
+		return schedule.size();
+	}
+	public int getTempSize()
+	{
+		return tempschedule.size();
+	}
 	public void orderAwayScore() {
 		sort: while (true) {
 			boolean sorted = false;

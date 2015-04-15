@@ -93,10 +93,14 @@ public class SportsGUI {
 		panel.add(dateMaster0, "flowx,cell 0 0,alignx center,aligny center");
 		dateMaster0.setColumns(10);
 		
+		final JRadioButton allButton = new JRadioButton("All");
+		
+		panel.add(allButton, "flowx,cell 0 1");
+		
 		date0 = new JTextField();
 		date0.setText("01/01/2015");
 		date0.setColumns(10);
-		panel.add(date0, "flowx,cell 0 1,alignx center,aligny center");
+		panel.add(date0, "cell 0 1,alignx center,aligny center");
 		
 		date1 = new JTextField();
 		date1.setText("01/07/2015");
@@ -112,11 +116,7 @@ public class SportsGUI {
 		team1.setModel(new DefaultComboBoxModel(new String[] {"All", "Atlanta Hawks", "Boston Celtics", "Brooklyn Nets", "Charlotte Bobcats", "Chicago Bulls", "Cleveland Cavaliers", "Dallas Mavericks", "Denver Nuggets", "Detroit Pistons", "Golden State Warriors", "Houston Rockets", "Indiana Pacers", "Los Angeles Clippers", "Los Angeles Lakers", "Memphis Grizzlies", "Miami Heat", "Milwaukee Bucks", "Minnesota Timberwolves", "New Orleans Hornets", "New York Knicks", "Oklahoma City Thunder", "Orlando Magic", "Philadelphia Sixers", "Phoenix Suns", "Portland Trail Blazers", "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors", "Utah Jazz", "Washington Wizards"}));
 		panel.add(team1, "cell 0 1,aligny center");
 		table = new JTable();
-		table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-			}
-		});
+	
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		final JComboBox sort = new JComboBox();
@@ -128,6 +128,21 @@ public class SportsGUI {
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, "cell 0 2,grow");
+		
+		dateMaster1 = new JTextField();
+		dateMaster1.setText("01/07/2015");
+		dateMaster1.setHorizontalAlignment(SwingConstants.CENTER);
+		dateMaster1.setColumns(10);
+		panel.add(dateMaster1, "cell 0 0");
+		
+		JButton btnSched = new JButton("Set Schedule");
+		panel.add(btnSched, "cell 0 0");
+		
+		final JLabel MasterSchedSize = new JLabel("0 Games");
+		panel.add(MasterSchedSize, "cell 0 0");
+		
+		final JLabel tempSchedSize = new JLabel("0 Games");
+		panel.add(tempSchedSize, "cell 0 1");
 		
 		
 		table.setModel(new DefaultTableModel(
@@ -150,8 +165,16 @@ public class SportsGUI {
 			
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-
+					//get temp schedule 
+					if(allButton.isSelected())
+					{
+						OddsShark.setTemp(team0.getSelectedItem().toString(), team1.getSelectedItem().toString(), sort.getSelectedItem().toString());
+					}
+					else
+					{
 					OddsShark.setTemp(date0.getText(), date1.getText(), team0.getSelectedItem().toString(), team1.getSelectedItem().toString(), sort.getSelectedItem().toString());
+					}
+					//output tempschedule to JTable
 					table.setModel(new DefaultTableModel(
 							OddsShark.getSchedule(),
 							new String[] {
@@ -165,6 +188,11 @@ public class SportsGUI {
 								return columnTypes[columnIndex];
 							}
 						});
+					int size = OddsShark.getTempSize();
+					if(size == 1)
+					tempSchedSize.setText(size + " Game");
+					else
+						tempSchedSize.setText(size + " Games");
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -174,24 +202,44 @@ public class SportsGUI {
 		});
 		scrollPane.setViewportView(table);
 		
-		dateMaster1 = new JTextField();
-		dateMaster1.setText("01/07/2015");
-		dateMaster1.setHorizontalAlignment(SwingConstants.CENTER);
-		dateMaster1.setColumns(10);
-		panel.add(dateMaster1, "cell 0 0");
 		
-		JButton btnSched = new JButton("Set Schedule");
+		//At button CLick get Master Schedule
 		btnSched.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					OddsShark = new Schedule(dateMaster0.getText(),dateMaster1.getText());
+					int size = OddsShark.getMasterSize();
+					if (size == 1)
+						MasterSchedSize.setText(size + " Game");
+					else
+						MasterSchedSize.setText(size + " Games");
+						
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		});
-		panel.add(btnSched, "cell 0 0");
+		allButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				date0.setText(dateMaster0.getText());
+				date1.setText(dateMaster1.getText());
+				if(allButton.isSelected())
+				{
+
+				date0.disable();
+				date1.disable();
+				}
+				else
+				{
+					date0.enable();
+					date1.enable();	
+				}
+				}
+				
+			
+		});
+
 	}
 
 }

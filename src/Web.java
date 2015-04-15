@@ -35,9 +35,8 @@ public class Web {
 		Calendar testCal = new Calendar();
 
 		startDate = testCal.nextDay(startDate);
-
+		//Run Until all dates have been gathered
 		calendarLoop: while (true) {
-
 			URL link = new URL("http://www.oddsshark.com/nba/scores?date="
 					+ startDate);
 			BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -91,6 +90,7 @@ public class Web {
 					full = false;
 				}
 			}
+			//set start date to 3rd next day
 			startDate = testCal.nextThreeDays(startDate);
 
 		}
