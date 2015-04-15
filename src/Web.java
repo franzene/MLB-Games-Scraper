@@ -10,11 +10,11 @@ public class Web {
 		League.teams();
 	}
 
-	public static void setHome(String line) {
+	public  void setHome(String line) {
 
 	}
 
-	public static void setAway(String line) {
+	public  void setAway(String line) {
 
 	}
 
@@ -29,11 +29,9 @@ public class Web {
 		boolean addHomeScore = false;
 		boolean addTeams = false;
 		boolean full = false;
-		boolean lastDay = false;
 
 		int homeScore = -1;
 		int awayScore = -1;
-		int count = 0;
 		Calendar testCal = new Calendar();
 
 		startDate = testCal.nextDay(startDate);

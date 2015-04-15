@@ -25,6 +25,19 @@ public class League {
 		}
 		return null;
 	 }
+	public static String getTeam(String line)
+	{
+		  Set<String> keys = team.keySet();
+			
+		  for (String key : keys) 
+		   {
+			if (line.contains(key)) 
+			 {
+			  return key +" " + team.get(key);
+			 }
+			}
+			return null;
+	}
 
 	public static void print() 
 	 {

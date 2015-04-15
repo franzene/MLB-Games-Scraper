@@ -38,7 +38,7 @@ public class Schedule {
 				last = true;
 			}
 			if (last && !schedule.get(i).getDate().equals(eDate)) {
-				return;
+				break;
 			}
 
 			if (get) {
@@ -58,6 +58,7 @@ public class Schedule {
 			}			
 
 		}
+		
 		if(sort.equals("Home Team"))
 		{
 			orderHomeTeam();
@@ -77,6 +78,8 @@ public class Schedule {
 			orderHomeScore();
 
 		}
+		else{
+		}
 
 	}
 
@@ -84,8 +87,8 @@ public class Schedule {
 		Object[][] sched = new Object[tempschedule.size()][5];
 		for (int x = 0; x < tempschedule.size(); x++) {
 			sched[x][0] = tempschedule.get(x).getDate();
-			sched[x][1] = tempschedule.get(x).getHome();
-			sched[x][2] = tempschedule.get(x).getAway();
+			sched[x][1] = League.getTeam(tempschedule.get(x).getHome()) ;
+			sched[x][2] = League.getTeam(tempschedule.get(x).getAway());
 			sched[x][3] = tempschedule.get(x).getHomeScore();
 			sched[x][4] = tempschedule.get(x).getAwayScore();
 		}
@@ -119,9 +122,6 @@ public class Schedule {
 
 				if (tempschedule.get(i).getHome()
 						.compareToIgnoreCase(tempschedule.get(i + 1).getHome()) > 0) {
-					// System.out.println(schedule.get(i).getHome() +
-					// schedule.get(i+1).getHome() +
-					// schedule.get(i).getHome().compareTo(schedule.get(i+1).getHome()));
 					Game temp_1 = tempschedule.get(i);
 					Game temp_2 = tempschedule.get(i + 1);
 

@@ -82,10 +82,6 @@ public class SportsGUI {
 		frame.setBounds(100, 100, 808, 575);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JTextArea masterdate1 = new JTextArea();
-		masterdate1.setText("01/01/2015");
-		frame.getContentPane().add(masterdate1, BorderLayout.CENTER);
-		
 		JPanel panel = new JPanel();
 		panel.setBackground(UIManager.getColor("Button.background"));
 		frame.getContentPane().add(panel, BorderLayout.CENTER);
